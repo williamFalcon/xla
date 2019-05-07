@@ -985,7 +985,6 @@ void XrtComputationClient::InitSession(XrtSession* session) const {
   } const init_nodes[] = {
       {16, &XrtComputationClient::GetCompileNode},
       {16, &XrtComputationClient::GetExecuteNode},
-      {16, &XrtComputationClient::GetExecuteChainedNode},
       {16, &XrtComputationClient::GetReadNode},
       {16, &XrtComputationClient::GetReleaseAllocationHandleNode},
       {16, &XrtComputationClient::GetReleaseCompileHandleNode},

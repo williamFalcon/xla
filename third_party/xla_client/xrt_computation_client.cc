@@ -1050,24 +1050,6 @@ const XrtSession::CachedNode& XrtComputationClient::GetExecuteNode(
   return cache->Get();
 }
 
-const XrtSession::CachedNode& XrtComputationClient::GetExecuteChainedNode(
-    XrtSession* session, const tensorflow::Scope& scope,
-    const string& device) const {
-  static const string op_name("XrtExecuteChained");
-  XrtSession::NodeCache* cache =
-      session->GetNodeCache(XrtSession::GetCacheKey(op_name, device));
-  if (cache->Empty()) {
-    XLA_COUNTER("XrtExecuteChained_Empty", 1);
-    std::vector<tensorflow::ops::Placeholder> holders(
-        {tensorflow::ops::Placeholder(scope, tensorflow::DT_STRING),
-         tensorflow::ops::Placeholder(scope, tensorflow::DT_STRING)});
-    cache->Add(std::make_shared<XrtSession::CachedNode>(
-        tensorflow::ops::XRTExecuteChained(scope, holders[0], holders[1]),
-        std::move(holders)));
-  }
-  return cache->Get();
-}
-
 const XrtSession::CachedNode& XrtComputationClient::GetReadNode(
     XrtSession* session, const tensorflow::Scope& scope,
     const string& device) const {

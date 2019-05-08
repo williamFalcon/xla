@@ -113,3 +113,5 @@ def train_mnist():
 
   return accuracy * 100.0
 
+if __name__ == '__main__':
+  train_mnist()

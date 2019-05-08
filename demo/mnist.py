@@ -60,7 +60,7 @@ def train_mnist():
       num_workers=num_workers)
   test_loader = torch.utils.data.DataLoader(
       datasets.MNIST(
-          FLAGS.datadir,
+          datadir,
           train=False,
           transform=transforms.Compose([
               transforms.ToTensor(),
